@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>se creo la paleta {{paleta.marca}}</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title_head %}
+<title>Paletas</title>
+{% endblock title_head %}
+
+
+
+
+{% block contiene_header %}
+
+<p class="container">se creo la paleta! {{paleta.marca}}</p>
+{% endblock contiene_header %}
+
+
