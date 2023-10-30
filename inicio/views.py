@@ -7,6 +7,7 @@ def inicio(request):
     return render(request, "inicio/inicio.html", {})
 def autos(request):
     
+      
     
     marca_a_buscar = request.GET.get('marca')
     if marca_a_buscar:
