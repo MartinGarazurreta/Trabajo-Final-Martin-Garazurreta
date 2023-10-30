@@ -7,8 +7,14 @@ def inicio(request):
     return render(request, "inicio/inicio.html", {})
 def paletas(request):
     
+    
+    marca_a_buscar = request.GET.get('marca')
+    if marca_a_buscar:
+        listado_de_paletas = Paleta.objects.filter(marca__icontains=marca_a_buscar)
+    else:
+        listado_de_paletas = Paleta.objects.all() 
    
-    return render(request, 'inicio/paletas.html')
+    return render(request, 'inicio/paletas.html', {'listado_de_paletas': listado_de_paletas})
 def crear_paleta(request):
    
     #print('===============')
@@ -32,13 +38,11 @@ def crear_paleta(request):
             marca = info_limpia.get('marca')
             descripcion = info_limpia.get('descripcion')
             anio = info_limpia.get('anio')
-            paleta = Paleta(marca=marca, descripcion=descripcion, anio=anio)
+            paleta = Paleta(marca=marca.lower(), descripcion=descripcion, anio=anio)
             paleta.save()
             
             return redirect('paletas')
         else: 
-             return render(request, 'inicio/crear_paleta.html', {'formulario': formulario})
+            return render(request, 'inicio/crear_paleta.html', {'formulario': formulario})
     formulario = CrearPalteaFormulario()    
-        
-         
     return render(request, 'inicio/crear_paleta.html', {'formulario': formulario})
