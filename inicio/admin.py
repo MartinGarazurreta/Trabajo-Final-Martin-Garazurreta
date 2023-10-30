@@ -1,5 +1,5 @@
 from django.contrib import admin
-from inicio.models import Paleta
+from inicio.models import Auto
 
-admin.site.register(Paleta)
+admin.site.register(Auto)
 # Register your models here.

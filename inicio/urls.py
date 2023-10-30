@@ -1,7 +1,7 @@
 from django.urls import path
-from inicio.views import inicio, paletas, crear_paleta
+from inicio.views import inicio, autos, crear_auto
 urlpatterns = [
     path('', inicio, name='inicio'),
-    path('paletas/', paletas, name='paletas'),
-    path('paletas/crear/', crear_paleta, name='crear_paleta'),
+    path('paletas/', autos, name='autos'),
+    path('paletas/crear/', crear_auto, name='crear_auto'),
 ]

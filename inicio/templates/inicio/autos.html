@@ -1,30 +1,30 @@
 {% extends "base.html" %}
 
 {% block title_head %}
-<title>Paletas</title>
+<title>Autos</title>
 {% endblock title_head %}
 
 {% block h1_header %}
-Paletas
+Autos
 {% endblock h1_header %}
 
 
 {% block main %}
 
 <form action="">
-    <input type="text" name="marca" placeholder="wilson, head...">
+    <input type="text" name="marca" placeholder="ferrari, BMW...">
     <input type="submit" value="Buscar">
 </form>
-{% if listado_de_paletas %}
+{% if listado_de_autos %}
 <ul>
-    {% for paleta in listado_de_paletas %}
+    {% for auto in listado_de_autos %}
 
-    <li>{{paleta}}</li>
+    <li>{{auto}}</li>
 
     {% endfor %}
 </ul>
 {% else %}
-<p>No se encontraron paletas. </p>
+<p>No se encontraron autos. </p>
 {% endif %}
 {% endblock main %}
 
