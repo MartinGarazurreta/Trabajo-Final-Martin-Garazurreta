@@ -39,8 +39,8 @@ def crear_auto(request):
             marca = info_limpia.get('marca')
             descripcion = info_limpia.get('descripcion')
             anio = info_limpia.get('anio')
-            paleta = Auto(marca=marca.lower(), descripcion=descripcion, anio=anio)
-            paleta.save()
+            auto = Auto(marca=marca.lower(), descripcion=descripcion, anio=anio)
+            auto.save()
             
             return redirect('autos')
         else: 
