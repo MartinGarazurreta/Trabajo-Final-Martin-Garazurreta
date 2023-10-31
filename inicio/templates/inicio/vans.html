@@ -1,17 +1,29 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+<title>Vans</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Vans
 {% endblock h1_header %}
 
 
 {% block main %}
 
-
-
+<form action="">
+    <input type="text" name="marca" placeholder="mercedes...">
+    <input type="submit" value="Buscar">
+</form>
+{% if listado_de_vans %}
 <ul>
-    
+    {% for van in listado_de_vans %}
 
-    <li>{{vans}}</li>
+    <li>{{van}}</li>
 
-  
+    {% endfor %}
 </ul>
-
-
+{% else %}
+<p>No se encontraron vans. </p>
+{% endif %}
 {% endblock main %}

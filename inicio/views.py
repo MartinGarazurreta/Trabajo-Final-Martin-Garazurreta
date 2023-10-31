@@ -53,6 +53,10 @@ def crear_auto(request):
     formulario = CrearAutoFormulario()    
     return render(request, 'inicio/crear_autos.html', {'formulario': formulario})
 
+def camiones(request):
+    listado_de_camiones = Camion.objects.all()
+    
+    return render(request, 'inicio/camiones.html', {'listado_de_camiones': listado_de_camiones})
 def crear_camion(request):
     if request.method == 'POST':
        
@@ -71,6 +75,11 @@ def crear_camion(request):
     formulario = CrearCamionFormulario()    
     return render(request, 'inicio/crear_camiones.html', {'formulario': formulario})
 
+def vans(request):
+    listado_de_vans = Vans.objects.all()
+    
+    return render(request, 'inicio/vans.html', {'listado_de_vans': listado_de_vans})
+
 def crear_vans(request):
     if request.method == 'POST':
        
@@ -80,10 +89,10 @@ def crear_vans(request):
             marca = info_limpia.get('marca')
             descripcion = info_limpia.get('descripcion')
             anio = info_limpia.get('anio')
-            vans = Vans(marca=marca.lower(), descripcion=descripcion, anio=anio)
-            vans.save()
+            van = Vans(marca=marca.lower(), descripcion=descripcion, anio=anio)
+            van.save()
             
-            return redirect('autos')
+            return redirect('vans')
         else: 
             return render(request, 'inicio/crear_vans.html', {'formulario': formulario})
     formulario = CrearVansFormulario()    
