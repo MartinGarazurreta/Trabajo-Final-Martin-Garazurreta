@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+<title> Crear vans</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Crear vans
+{% endblock h1_header %}
+
+
+{% block main %}
+<form action="" method='POST'>
+    {% csrf_token %}
+
+    {{formulario}}
+    <input type="submit" value="Crear">   
+    {% comment "" %}<button>Crear</button>{% endcomment %}
+</form>
+
+{% endblock main %}

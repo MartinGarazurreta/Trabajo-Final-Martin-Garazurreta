@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
 from inicio.models import Auto
 from inicio.forms import CrearAutoFormulario
+from inicio.models import Camion
+from inicio.forms import CrearCamionFormulario
+from inicio.models import Vans
+from inicio.forms import CrearVansFormulario
+
 def inicio(request):
 
 
@@ -46,4 +51,40 @@ def crear_auto(request):
         else: 
             return render(request, 'inicio/crear_auto.html', {'formulario': formulario})
     formulario = CrearAutoFormulario()    
-    return render(request, 'inicio/crear_auto.html', {'formulario': formulario})
+    return render(request, 'inicio/crear_autos.html', {'formulario': formulario})
+
+def crear_camion(request):
+    if request.method == 'POST':
+       
+        formulario = CrearCamionFormulario(request.POST)
+        if formulario.is_valid():
+            info_limpia = formulario.cleaned_data
+            marca = info_limpia.get('marca')
+            descripcion = info_limpia.get('descripcion')
+            anio = info_limpia.get('anio')
+            camion = Camion(marca=marca.lower(), descripcion=descripcion, anio=anio)
+            camion.save()
+            
+            return redirect('camion')
+        else: 
+            return render(request, 'inicio/crear_camiones.html', {'formulario': formulario})
+    formulario = CrearCamionFormulario()    
+    return render(request, 'inicio/crear_camiones.html', {'formulario': formulario})
+
+def crear_vans(request):
+    if request.method == 'POST':
+       
+        formulario = CrearVansFormulario(request.POST)
+        if formulario.is_valid():
+            info_limpia = formulario.cleaned_data
+            marca = info_limpia.get('marca')
+            descripcion = info_limpia.get('descripcion')
+            anio = info_limpia.get('anio')
+            vans = Vans(marca=marca.lower(), descripcion=descripcion, anio=anio)
+            vans.save()
+            
+            return redirect('autos')
+        else: 
+            return render(request, 'inicio/crear_vans.html', {'formulario': formulario})
+    formulario = CrearVansFormulario()    
+    return render(request, 'inicio/crear_vans.html', {'formulario': formulario})
