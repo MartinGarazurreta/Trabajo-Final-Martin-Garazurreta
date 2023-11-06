@@ -1,18 +1,24 @@
 from django import forms 
-
-class CrearAutoFormulario(forms.Form):
+class BaseAutoFormulario(forms.Form):
     marca = forms.CharField(max_length=30)
-    descripcion = forms.CharField(max_length=250)
+    modelo = forms.CharField(max_length=250)
     anio = forms.IntegerField()
+
+
+class CrearAutoFormulario(BaseAutoFormulario):
+   ...
+
+class ActualizarAutoFormulario(BaseAutoFormulario):
+    ...
 
 class CrearCamionFormulario(forms.Form):
     marca = forms.CharField(max_length=30)
-    descripcion = forms.CharField(max_length=250)
+    modelo = forms.CharField(max_length=250)
     anio = forms.IntegerField()
     
 class CrearVansFormulario(forms.Form):
     marca = forms.CharField(max_length=30)
-    descripcion = forms.CharField(max_length=250)
+    modelo = forms.CharField(max_length=250)
     anio = forms.IntegerField()
     
     

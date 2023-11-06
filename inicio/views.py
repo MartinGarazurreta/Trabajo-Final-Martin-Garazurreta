@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from inicio.models import Auto
-from inicio.forms import CrearAutoFormulario
+from inicio.forms import CrearAutoFormulario, ActualizarAutoFormulario
 from inicio.models import Camion
 from inicio.forms import CrearCamionFormulario
 from inicio.models import Vans
@@ -42,9 +42,9 @@ def crear_auto(request):
         if formulario.is_valid():
             info_limpia = formulario.cleaned_data
             marca = info_limpia.get('marca')
-            descripcion = info_limpia.get('descripcion')
+            modelo = info_limpia.get('modelo')
             anio = info_limpia.get('anio')
-            auto = Auto(marca=marca.lower(), descripcion=descripcion, anio=anio)
+            auto = Auto(marca=marca.lower(), modelo=modelo, anio=anio)
             auto.save()
             
             return redirect('autos')
@@ -64,9 +64,9 @@ def crear_camion(request):
         if formulario.is_valid():
             info_limpia = formulario.cleaned_data
             marca = info_limpia.get('marca')
-            descripcion = info_limpia.get('descripcion')
+            modelo = info_limpia.get('modelo')
             anio = info_limpia.get('anio')
-            camion = Camion(marca=marca.lower(), descripcion=descripcion, anio=anio)
+            camion = Camion(marca=marca.lower(), modelo=modelo, anio=anio)
             camion.save()
             
             return redirect('camion')
@@ -87,9 +87,9 @@ def crear_vans(request):
         if formulario.is_valid():
             info_limpia = formulario.cleaned_data
             marca = info_limpia.get('marca')
-            descripcion = info_limpia.get('descripcion')
+            modelo = info_limpia.get('modelo')
             anio = info_limpia.get('anio')
-            van = Vans(marca=marca.lower(), descripcion=descripcion, anio=anio)
+            van = Vans(marca=marca.lower(), modelo=modelo, anio=anio)
             van.save()
             
             return redirect('vans')
@@ -97,3 +97,29 @@ def crear_vans(request):
             return render(request, 'inicio/crear_vans.html', {'formulario': formulario})
     formulario = CrearVansFormulario()    
     return render(request, 'inicio/crear_vans.html', {'formulario': formulario})
+def eliminar_auto(request, auto_id):
+    auto_a_eliminar = Auto.objects.get(id=auto_id)
+    auto_a_eliminar.delete()
+    return redirect("autos")
+def actualizar_auto(request, auto_id):
+    auto_a_actualizar = Auto.objects.get(id=auto_id)
+    if request.method == 'POST':
+        formulario = ActualizarAutoFormulario(request.POST)
+        if formulario.is_valid():
+            info_nueva = formulario.cleaned_data
+                
+            auto_a_actualizar.marca = info_nueva.get('marca')
+            auto_a_actualizar.modelo = info_nueva.get('descripcion')  
+            auto_a_actualizar.anio = info_nueva.get('anio')
+            
+            auto_a_actualizar.save()     
+            return redirect('autos')
+        return render(request, 'auto', 'inicio/actualizar_auto.html', {'formulario': formulario})  
+           
+    formulario = ActualizarAutoFormulario(initial={'marca': auto_a_actualizar.marca, 'descripcion': auto_a_actualizar.modelo, 'anio': auto_a_actualizar.anio})
+    return render(request, 'inicio/actualizar_auto.html', {'formulario': formulario})
+    
+def detalle_auto(request, auto_id):
+    auto_detalles = Auto.objects.get(id=auto_id)
+    
+    return render(request, 'inicio/detalle_auto.html', {'auto': auto_detalles})
