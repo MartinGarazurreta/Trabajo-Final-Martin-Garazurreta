@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+<title> Eliminar moto</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Eliminar moto
+{% endblock h1_header %}
+
+
+{% block main %}
+<form action="" method='POST'>
+    {% csrf_token %}
+    Desea eliminar la moto {{moto.marca}} - {{moto.modelo}} - {{moto.fecha_creacion}}?
+    <input type="submit" value="Confirmar">   
+   
+</form>
+
+{% endblock main %}

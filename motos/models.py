@@ -5,5 +5,5 @@ class Moto(models.Model):
     modelo = models.CharField(max_length=250)
     fecha_creacion = models.DateField()
     
-    def __strr__(self):
+    def __str__(self):
         return f'{self.marca} - {self.modelo} - {self.fecha_creacion}'

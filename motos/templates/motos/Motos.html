@@ -18,7 +18,7 @@ Motos
 <ul>
     {% for Moto in listado_de_motos %}
 
-    <li>{{Moto}}  
+    <li>{{Moto}} | <a href={% url "actualizar_moto" moto.id %}>Actualizar</a>|<a href="detalle_moto">{{Moto}}</a>| <a href={% url "eliminar_moto" moto.id %}>Eliminar</a> | 
        
     </li>
 
