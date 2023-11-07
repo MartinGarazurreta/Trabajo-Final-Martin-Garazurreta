@@ -5,6 +5,8 @@ from inicio.models import Camion
 from inicio.forms import CrearCamionFormulario
 from inicio.models import Vans
 from inicio.forms import CrearVansFormulario
+from django.contrib.auth.decorators import login_required
+
 
 def inicio(request):
 
@@ -21,6 +23,8 @@ def autos(request):
         listado_de_autos = Auto.objects.all() 
    
     return render(request, 'inicio/autos.html', {'listado_de_autos': listado_de_autos})
+
+@login_required
 def crear_auto(request):
    
     #print('===============')
@@ -57,6 +61,8 @@ def camiones(request):
     listado_de_camiones = Camion.objects.all()
     
     return render(request, 'inicio/camiones.html', {'listado_de_camiones': listado_de_camiones})
+
+@login_required
 def crear_camion(request):
     if request.method == 'POST':
        
@@ -80,6 +86,7 @@ def vans(request):
     
     return render(request, 'inicio/vans.html', {'listado_de_vans': listado_de_vans})
 
+@login_required
 def crear_vans(request):
     if request.method == 'POST':
        
@@ -97,10 +104,14 @@ def crear_vans(request):
             return render(request, 'inicio/crear_vans.html', {'formulario': formulario})
     formulario = CrearVansFormulario()    
     return render(request, 'inicio/crear_vans.html', {'formulario': formulario})
+
+@login_required
 def eliminar_auto(request, auto_id):
     auto_a_eliminar = Auto.objects.get(id=auto_id)
     auto_a_eliminar.delete()
     return redirect("autos")
+
+@login_required
 def actualizar_auto(request, auto_id):
     auto_a_actualizar = Auto.objects.get(id=auto_id)
     if request.method == 'POST':
@@ -123,3 +134,4 @@ def detalle_auto(request, auto_id):
     auto_detalles = Auto.objects.get(id=auto_id)
     
     return render(request, 'inicio/detalle_auto.html', {'auto': auto_detalles})
+
