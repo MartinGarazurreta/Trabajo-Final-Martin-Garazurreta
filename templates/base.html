@@ -27,7 +27,12 @@
                 <a class="navbar-brand" href={% url "camion" %}>camion</a> 
                 <a class="navbar-brand" href={% url "vans" %}>vans</a>
                 <a class="navbar-brand" href={% url "motos" %}>Motos</a>
-                {% comment "" %}<a class="btn btn-primary" href="#signup">Sign Up</a>{% endcomment %}
+                {% if not request.user.is.authenticate %}
+                <a class="btn btn-primary" href={% url 'login' %}>Iniciar Sesion</a>
+                {% else %}
+                <a class="navbar-brand" href={% url "#" %}>{{request.user.username}}</a> 
+                <a class="btn btn-warning" href={% url 'logout' %}>Cerrar Sesion</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->
