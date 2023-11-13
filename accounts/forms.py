@@ -14,9 +14,9 @@ class MiFormilarioDeCreacion(UserCreationForm):
         #help_texts = {'username': '','email': '', 'password1': '', 'password2': '',}
         help_texts = {key: '' for key in fields}
         
-class EdicionFormulario():
+class EdicionFormulario(UserChangeForm):
     password = None
-    Email = forms.EmailField(label='Camibiar email', required=False)
+    email = forms.EmailField(label='Camibiar email', required=False)
     first_name = forms.CharField(label='Cambiar nombre', required=False)
     last_name = forms.CharField(label='cambiar apellido', required=False)
     biografia = forms.CharField(max_length=300, required=False, widget=forms.Textarea)

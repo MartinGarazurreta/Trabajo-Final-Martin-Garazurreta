@@ -40,12 +40,17 @@ def registro(request):
     
     
     return render(request, 'accounts/registro.html', {'formulario_de_registro': formulario})
-
+def perfil(request):
+    datos_extra = request.user.datosextra
+    Perfil =  EdicionFormulario(initial={'biografia': datos_extra.biografia, 'avatar': datos_extra.avatar}, instance=request.user)
+    return render(request, 'accounts/perfil.html', {'perfil':Perfil})
+    
+    
 def editar_perfil(request):
     
     datos_extra = request.user.datosextra
         
-    formulario = EdicionFormulario(initial={'biografia': datos_extra.biografia, 'avatar': datos_extra.avatar},instance=request.user)
+    formulario = EdicionFormulario(initial={'biografia': datos_extra.biografia, 'avatar': datos_extra.avatar}, instance=request.user)
     
     if request.method == 'POST':
         formulario = EdicionFormulario(request.POST, request.FILES, instance=request.user)
@@ -63,10 +68,11 @@ def editar_perfil(request):
             datos_extra .save()
             formulario.save()
             
-            return redirect('edtitar_perfil')
+            return redirect('editar_perfil')
     
     return render(request, 'accounts/editar_perfil.html', {'formulario':formulario})
 
 class CambiarPassword(PasswordChangeView):
     template_name = 'accounts/cambiar_password.html'
     success_url = reverse_lazy('editar_perfil')
+
