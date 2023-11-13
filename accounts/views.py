@@ -29,12 +29,14 @@ def registro(request):
     formulario = MiFormilarioDeCreacion()
     
     if request.method == 'POST':
-        formulario = MiFormilarioDeCreacion()
+        print("ES POST")
+        formulario = MiFormilarioDeCreacion(request.POST)
         if formulario.is_valid():
-            
+            print("Es Valido")
             formulario.save()
-            
+
             return redirect('login')
+
     
     
     return render(request, 'accounts/registro.html', {'formulario_de_registro': formulario})
