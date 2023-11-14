@@ -14,13 +14,12 @@ Perfil
     <a href={% url 'editar_perfil' %}>Editar Perfil</a>
 </p>
 <form action={% url "perfil" %} method='POST' enctype='multipart/form-data'>
-    {% csrf_token %}
-    <table>
-        {{perfil}}
-    </table>
-    
-    
+    {% csrf_token %}  
 </form>
 
+<p>Nombre: {{user.first_name}} <p>
+<p>Apellido: {{user.last_name}} </p>
+</p>Email: {{user.email}} </p>
+</p>Biografia: {{ user.datosextra.biografia }}</p>
 {% endblock main %}
 

@@ -120,7 +120,7 @@ def actualizar_auto(request, auto_id):
             info_nueva = formulario.cleaned_data
                 
             auto_a_actualizar.marca = info_nueva.get('marca')
-            auto_a_actualizar.modelo = info_nueva.get('descripcion')  
+            auto_a_actualizar.modelo = info_nueva.get('modelo')  
             auto_a_actualizar.anio = info_nueva.get('anio')
             
             auto_a_actualizar.save()     

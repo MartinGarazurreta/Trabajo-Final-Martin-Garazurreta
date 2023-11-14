@@ -42,7 +42,7 @@ def registro(request):
     return render(request, 'accounts/registro.html', {'formulario_de_registro': formulario})
 def perfil(request):
     datos_extra = request.user.datosextra
-    Perfil =  EdicionFormulario(initial={'biografia': datos_extra.biografia, 'avatar': datos_extra.avatar}, instance=request.user)
+    Perfil =  EdicionFormulario(instance=request.user, initial={'biografia': datos_extra.biografia, 'avatar': datos_extra.avatar}, )
     return render(request, 'accounts/perfil.html', {'perfil':Perfil})
     
     
