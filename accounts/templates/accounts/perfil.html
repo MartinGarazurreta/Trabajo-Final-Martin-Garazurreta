@@ -19,9 +19,13 @@ Perfil
 
 <p>Nombre: {{user.first_name}} <p>
 <p>Apellido: {{user.last_name}} </p>
-</p>Email: {{user.email}} </p>
-</p>Biografia: {{ user.datosextra.biografia }}</p>
+<p>Email: {{user.email}} </p>
+<div style="display: flex;">
+    <div style="margin-right: 10px;">Biografía:</div>
+    <div>{{ user.datosextra.biografia | safe }}</div>
+</div>
 <p>Año: {{user.datosextra.anio | safe}}</p>
 
 {% endblock main %}
 
+{% comment "" %}<div style="display: inline;">Biografía: {{ user.datosextra.biografia | safe }}</div>{% endcomment %}
