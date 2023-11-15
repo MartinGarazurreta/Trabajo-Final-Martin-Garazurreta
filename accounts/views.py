@@ -59,12 +59,14 @@ def editar_perfil(request):
             
             nueva_biografia = formulario.cleaned_data.get('biografia')
             nuevo_avatar = formulario.cleaned_data.get('avatar')
+            nuevo_anio = formulario.cleaned_data.get('anio')
             
             if nueva_biografia:
                 datos_extra.biografia = nueva_biografia
             if nuevo_avatar:
                 datos_extra.avatar = nuevo_avatar
-                
+            if nuevo_anio:
+                datos_extra.anio = nuevo_anio
             datos_extra .save()
             formulario.save()
             

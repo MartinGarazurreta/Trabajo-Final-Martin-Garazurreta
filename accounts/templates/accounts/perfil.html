@@ -21,5 +21,7 @@ Perfil
 <p>Apellido: {{user.last_name}} </p>
 </p>Email: {{user.email}} </p>
 </p>Biografia: {{ user.datosextra.biografia }}</p>
+<p>Año: {{user.datosextra.anio | safe}}</p>
+
 {% endblock main %}
 

@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User 
+from ckeditor.fields import RichTextFormField
+
 
 
 class MiFormilarioDeCreacion(UserCreationForm):
@@ -19,12 +21,13 @@ class EdicionFormulario(UserChangeForm):
     email = forms.EmailField(label='Camibiar email', required=False)
     first_name = forms.CharField(label='Cambiar nombre', required=False)
     last_name = forms.CharField(label='cambiar apellido', required=False)
-    biografia = forms.CharField(max_length=300, required=False, widget=forms.Textarea)
+    biografia = RichTextFormField(required=False)
     avatar = forms.ImageField(required=False)
+    anio = forms.DateField(required=False)
     
     class Meta:
             model = User
             fields = ['email', 'first_name', 'last_name', 'biografia', 'avatar']
         
     
-        
+       #forms.CharField (max_length=300, required=False, widget=forms.Textarea)
