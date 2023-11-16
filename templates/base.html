@@ -33,7 +33,7 @@
                 {% else %}
                     <a class="navbar-brand" href={% url "perfil" %} >
                     {% if request.user.datosextra.avatar %}
-                        <img src="{{request.user.datosestra.avatar.url}}" alt="avatar" height='40px'>
+                        <img src="{{request.user.datosextra.avatar.url}}" alt="avatar" height='40px'>
                     {% endif %}
                     {{request.user.username}}
                 </a> 
